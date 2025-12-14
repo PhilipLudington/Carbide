@@ -46,25 +46,32 @@ To integrate Carbide standards into an existing C/C++ project:
    ```bash
    cp path/to/Carbide/CARBIDE.md your-project/
    cp path/to/Carbide/STANDARDS.md your-project/
-   cp -r path/to/Carbide/.claude your-project/
    ```
 
-2. **Copy the templates** you need:
+2. **Copy the slash commands** to `.claude/commands/`:
+   ```bash
+   mkdir -p your-project/.claude/commands
+   cp path/to/Carbide/.claude/commands/* your-project/.claude/commands/
+   ```
+
+   > **Note**: Claude Code looks for slash commands in `.claude/commands/` at your project root. The commands must be in this exact location to work.
+
+3. **Copy the templates** you need:
    ```bash
    cp path/to/Carbide/templates/.clang-format your-project/
    cp path/to/Carbide/templates/.clang-tidy your-project/
    ```
 
-3. **Optionally copy the documentation** for reference:
+4. **Optionally copy the documentation** for reference:
    ```bash
    cp -r path/to/Carbide/docs your-project/
    ```
 
-4. **Integrate with your build system**:
+5. **Integrate with your build system**:
    - If using Make, adapt `templates/Makefile` or add the `check`, `safety`, and `format` targets to your existing Makefile
    - If using CMake, add clang-tidy and clang-format targets manually
 
-5. **Reference from your CLAUDE.md** (if you have one):
+6. **Reference from your CLAUDE.md** (if you have one):
    Add this line to your existing `CLAUDE.md`:
    ```markdown
    For C/C++ code, follow the standards in CARBIDE.md
