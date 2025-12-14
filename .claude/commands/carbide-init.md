@@ -31,7 +31,7 @@ Create a new C project following Carbide standards. The project should be create
 
 #### 1. Main Header (`include/{project_name}/{project_name}.h`)
 
-Generate a header following CLAUDE.md "Header File Template":
+Generate a header following CARBIDE.md "Header File Template":
 - Include guards using `{PROJECT_NAME}_H` format
 - `extern "C"` guards for C++ compatibility
 - Section comments for Types, Lifecycle, Operations
@@ -41,7 +41,7 @@ Generate a header following CLAUDE.md "Header File Template":
 
 #### 2. Implementation (`src/{project_name}.c`)
 
-Generate implementation following CLAUDE.md "Source File Template":
+Generate implementation following CARBIDE.md "Source File Template":
 - Struct definition for the opaque type
 - Thread-local error handling (`set_error`, `get_last_error`)
 - Create function with NULL config handling, allocation check

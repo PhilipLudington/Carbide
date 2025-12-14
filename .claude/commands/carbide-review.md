@@ -7,7 +7,7 @@ Review C/C++ code against Carbide standards.
 
 ## Instructions
 
-Perform a comprehensive code review of the specified C/C++ file(s) against Carbide standards defined in STANDARDS.md and CLAUDE.md.
+Perform a comprehensive code review of the specified C/C++ file(s) against Carbide standards defined in STANDARDS.md and CARBIDE.md.
 
 ### Review Process
 

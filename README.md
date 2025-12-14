@@ -38,6 +38,44 @@ make safety                       # Run security checks
 make test                         # Run tests with sanitizers
 ```
 
+### Adding Carbide to an Existing Project
+
+To integrate Carbide standards into an existing C/C++ project:
+
+1. **Copy the core files** to your project root:
+   ```bash
+   cp path/to/Carbide/CARBIDE.md your-project/
+   cp path/to/Carbide/STANDARDS.md your-project/
+   cp -r path/to/Carbide/.claude your-project/
+   ```
+
+2. **Copy the templates** you need:
+   ```bash
+   cp path/to/Carbide/templates/.clang-format your-project/
+   cp path/to/Carbide/templates/.clang-tidy your-project/
+   ```
+
+3. **Optionally copy the documentation** for reference:
+   ```bash
+   cp -r path/to/Carbide/docs your-project/
+   ```
+
+4. **Integrate with your build system**:
+   - If using Make, adapt `templates/Makefile` or add the `check`, `safety`, and `format` targets to your existing Makefile
+   - If using CMake, add clang-tidy and clang-format targets manually
+
+5. **Reference from your CLAUDE.md** (if you have one):
+   Add this line to your existing `CLAUDE.md`:
+   ```markdown
+   For C/C++ code, follow the standards in CARBIDE.md
+   ```
+
+Once set up, you can use the Carbide slash commands directly in your project:
+```
+/carbide-review src/main.c        # Review against standards
+/carbide-check                    # Run validation tooling
+```
+
 ## What's Included
 
 ### Standards (`STANDARDS.md`)
@@ -103,7 +141,7 @@ Carbide supports cross-platform development:
 ```
 Carbide/
 ├── README.md              # This file
-├── CLAUDE.md              # AI development guidance
+├── CARBIDE.md             # AI development guidance (C/C++ standards)
 ├── STANDARDS.md           # Coding standards
 ├── .claude/commands/      # Slash commands
 ├── templates/             # Project templates
