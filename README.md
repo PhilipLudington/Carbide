@@ -40,48 +40,51 @@ make test                         # Run tests with sanitizers
 
 ### Adding Carbide to an Existing Project
 
-To integrate Carbide standards into an existing C/C++ project:
+To integrate Carbide into an existing C/C++ project:
 
-1. **Copy the core files** to your project root:
+1. **Clone or copy Carbide** into your project:
    ```bash
-   cp path/to/Carbide/CARBIDE.md your-project/
-   cp path/to/Carbide/STANDARDS.md your-project/
+   # Option A: Clone as a subdirectory
+   git clone https://github.com/MrPhil/Carbide.git your-project/carbide
+
+   # Option B: Add as a submodule
+   cd your-project
+   git submodule add https://github.com/MrPhil/Carbide.git carbide
    ```
 
-2. **Copy the slash commands** to `.claude/commands/`:
+2. **Copy the Claude Code integration** to `.claude/`:
    ```bash
-   mkdir -p your-project/.claude/commands
-   cp path/to/Carbide/.claude/commands/* your-project/.claude/commands/
+   mkdir -p .claude/commands .claude/rules
+   cp carbide/commands/* .claude/commands/
+   cp carbide/rules/* .claude/rules/
    ```
 
-   > **Note**: Claude Code looks for slash commands in `.claude/commands/` at your project root. The commands must be in this exact location to work.
+   > **Note**: Claude Code requires commands in `.claude/commands/` and rules in `.claude/rules/` at your project root. These must be copied (symlinks don't work reliably on Windows).
 
 3. **Copy the templates** you need:
    ```bash
-   cp path/to/Carbide/templates/.clang-format your-project/
-   cp path/to/Carbide/templates/.clang-tidy your-project/
+   cp carbide/templates/.clang-format .
+   cp carbide/templates/.clang-tidy .
    ```
 
-4. **Optionally copy the documentation** for reference:
-   ```bash
-   cp -r path/to/Carbide/docs your-project/
-   ```
-
-5. **Integrate with your build system**:
-   - If using Make, adapt `templates/Makefile` or add the `check`, `safety`, and `format` targets to your existing Makefile
+4. **Integrate with your build system**:
+   - If using Make, adapt `carbide/templates/Makefile` or add the `check`, `safety`, and `format` targets to your existing Makefile
    - If using CMake, add clang-tidy and clang-format targets manually
 
-6. **Reference from your CLAUDE.md** (if you have one):
-   Add this line to your existing `CLAUDE.md`:
+5. **Reference from your CLAUDE.md** (if you have one):
    ```markdown
-   For C/C++ code, follow the standards in CARBIDE.md
+   For C/C++ code, follow the standards in carbide/CARBIDE.md
    ```
 
-Once set up, you can use the Carbide slash commands directly in your project:
+Once set up, use the Carbide slash commands:
 ```
 /carbide-review src/main.c        # Review against standards
 /carbide-check                    # Run validation tooling
 ```
+
+### Carbide in Submodules
+
+If your project includes submodules that also use Carbide, there's no conflict. Claude Code uses the `.claude/` directory at the **git root**, so only the parent project's commands and rules are active. The submodule's Carbide files are simply ignored when working from the parent project.
 
 ## What's Included
 
@@ -94,7 +97,7 @@ Comprehensive coding standards covering:
 - API design
 - Security practices
 
-### Slash Commands
+### Slash Commands (`commands/`)
 
 | Command | Mode | Description |
 |---------|------|-------------|
@@ -102,6 +105,20 @@ Comprehensive coding standards covering:
 | `/carbide-review` | Standalone | Review code against standards |
 | `/carbide-check` | Integrated | Run validation tooling |
 | `/carbide-safety` | Standalone | Security-focused code review |
+
+### Claude Code Rules (`rules/`)
+
+Auto-loaded rules that guide Claude Code's behavior for C/C++ development:
+- `memory.md` - Ownership, allocation, NULL safety
+- `errors.md` - Return values, error checking, cleanup
+- `security.md` - Input validation, buffer safety
+- `naming.md` - Case conventions, prefixes
+- `api-design.md` - Config structs, const correctness
+- `testing.md` - Test organization, sanitizers
+- `concurrency.md` - Thread safety, mutexes
+- `preprocessor.md` - Macro hygiene
+- `logging.md` - Log levels, message format
+- `portability.md` - Integer types, platform abstraction
 
 ### Validation Tooling
 
@@ -148,18 +165,18 @@ Carbide supports cross-platform development:
 ```
 Carbide/
 ├── README.md              # This file
-├── CARBIDE.md             # AI development guidance (C/C++ standards)
+├── CARBIDE.md             # AI development guidance
 ├── STANDARDS.md           # Coding standards
-├── .claude/commands/      # Slash commands
+├── commands/              # Slash commands (copy to .claude/commands/)
+├── rules/                 # Claude Code rules (copy to .claude/rules/)
 ├── templates/             # Project templates
 │   ├── Makefile           # Build template
 │   ├── .clang-tidy        # Static analysis config
 │   ├── .clang-format      # Formatting config
-│   └── project/           # Full scaffold template
-├── docs/
-│   ├── patterns/          # Coding pattern guides
-│   └── security/          # Security guides
-└── examples/              # Example projects
+│   └── project/           # Scaffold for /carbide-init
+└── docs/
+    ├── patterns/          # Coding pattern guides
+    └── security/          # Security guides
 ```
 
 ## Language Standards
