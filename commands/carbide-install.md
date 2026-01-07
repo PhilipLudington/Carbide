@@ -38,9 +38,6 @@ Install the Carbide C/C++ development framework into the current project.
    - Confirm `.claude/rules/` contains the rule files
    - Confirm `CLAUDE.md` references the Carbide framework
 
-6. **Clean up**:
-   Delete `.claude/commands/carbide-install.md` - it's no longer needed after installation.
-
 ## After Installation
 
 The following commands are now available:
