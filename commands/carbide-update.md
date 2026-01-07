@@ -11,7 +11,7 @@ Update the Carbide framework to the latest version.
 
 2. **Clone the latest version**:
    ```bash
-   git clone https://github.com/MrPhil/Carbide.git carbide
+   git clone https://github.com/PhilipLudington/Carbide.git carbide
    rm -rf carbide/.git
    ```
 

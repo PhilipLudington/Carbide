@@ -45,7 +45,7 @@ To integrate Carbide into an existing C/C++ project:
 1. **Copy the install command** to your project:
    ```bash
    mkdir -p .claude/commands
-   curl -o .claude/commands/carbide-install.md https://raw.githubusercontent.com/MrPhil/Carbide/main/commands/carbide-install.md
+   curl -o .claude/commands/carbide-install.md https://raw.githubusercontent.com/PhilipLudington/Carbide/main/commands/carbide-install.md
    ```
 
 2. **Run the install command** in Claude Code:
