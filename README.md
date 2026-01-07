@@ -42,39 +42,18 @@ make test                         # Run tests with sanitizers
 
 To integrate Carbide into an existing C/C++ project:
 
-1. **Clone or copy Carbide** into your project:
+1. **Copy the install command** to your project:
    ```bash
-   # Option A: Clone as a subdirectory
-   git clone https://github.com/MrPhil/Carbide.git your-project/carbide
-
-   # Option B: Add as a submodule
-   cd your-project
-   git submodule add https://github.com/MrPhil/Carbide.git carbide
+   mkdir -p .claude/commands
+   curl -o .claude/commands/carbide-install.md https://raw.githubusercontent.com/MrPhil/Carbide/main/commands/carbide-install.md
    ```
 
-2. **Copy the Claude Code integration** to `.claude/`:
-   ```bash
-   mkdir -p .claude/commands .claude/rules
-   cp carbide/commands/* .claude/commands/
-   cp carbide/rules/* .claude/rules/
+2. **Run the install command** in Claude Code:
+   ```
+   /carbide-install
    ```
 
-   > **Note**: Claude Code requires commands in `.claude/commands/` and rules in `.claude/rules/` at your project root. These must be copied (symlinks don't work reliably on Windows).
-
-3. **Copy the templates** you need:
-   ```bash
-   cp carbide/templates/.clang-format .
-   cp carbide/templates/.clang-tidy .
-   ```
-
-4. **Integrate with your build system**:
-   - If using Make, adapt `carbide/templates/Makefile` or add the `check`, `safety`, and `format` targets to your existing Makefile
-   - If using CMake, add clang-tidy and clang-format targets manually
-
-5. **Reference from your CLAUDE.md** (if you have one):
-   ```markdown
-   For C/C++ code, follow the standards in carbide/CARBIDE.md
-   ```
+This will guide you through cloning Carbide, copying the necessary files, and configuring your project.
 
 Once set up, use the Carbide slash commands:
 ```
