@@ -7,6 +7,7 @@ Install the Carbide C/C++ development framework into the current project.
 1. **Clone Carbide** into the project:
    ```bash
    git clone https://github.com/MrPhil/Carbide.git carbide
+   rm -rf carbide/.git
    ```
 
 2. **Copy Claude Code integration**:

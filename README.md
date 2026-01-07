@@ -59,6 +59,7 @@ Once set up, use the Carbide slash commands:
 ```
 /carbide-review src/main.c        # Review against standards
 /carbide-check                    # Run validation tooling
+/carbide-update                   # Update to latest version
 ```
 
 ### Carbide in Submodules
@@ -80,6 +81,8 @@ Comprehensive coding standards covering:
 
 | Command | Mode | Description |
 |---------|------|-------------|
+| `/carbide-install` | Setup | Install Carbide into an existing project |
+| `/carbide-update` | Setup | Update Carbide to the latest version |
 | `/carbide-init` | Setup | Create a new Carbide project |
 | `/carbide-review` | Standalone | Review code against standards |
 | `/carbide-check` | Integrated | Run validation tooling |
